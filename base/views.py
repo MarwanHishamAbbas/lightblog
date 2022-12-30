@@ -16,7 +16,10 @@ def userAuth(request):
                 login(request, user)
                 return redirect('home')
             else:
-                messages.error(request, 'Error')    
+                messages.error(request,'Password must be strong')
+                return redirect('auth')
+
+                
         if 'sign-in' in request.POST:
             email = request.POST.get('email').lower()
             password = request.POST.get('password')
@@ -28,6 +31,9 @@ def userAuth(request):
             if user is not None:
                 login(request, user)
                 return redirect('home')
+            else:
+                messages.error(request,'Email or password not correct')
+                return redirect('auth')
  
 
     context = {'form': form}
