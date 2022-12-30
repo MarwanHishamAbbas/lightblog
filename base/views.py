@@ -41,4 +41,4 @@ def userAuth(request):
 
 def home(request):
     context = {}
-    return render(request, 'base/home.html', context)
+    return render(request, 'base.html', context)
