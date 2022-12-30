@@ -14,7 +14,13 @@
       <div class="box">
         <div class="inner-box">
           <div class="forms-wrap">
-            <form action="index.html" autocomplete="off" class="sign-in-form">
+            <form
+              action=""
+              method="POST"
+              autocomplete="off"
+              class="sign-in-form"
+            >
+              {% csrf_token %}
               <div class="logo">
                 <img src="{% static 'img/logo.png' %}" alt="LightBlog" />
                 <h4>LightBlog</h4>
@@ -34,8 +40,9 @@
                     class="input-field"
                     autocomplete="off"
                     required
+                    name="email"
                   />
-                  <label>Name</label>
+                  <label>Email</label>
                 </div>
 
                 <div class="input-wrap">
@@ -44,6 +51,7 @@
                     minlength="4"
                     class="input-field"
                     autocomplete="off"
+                    name="password"
                     required
                   />
                   <label>Password</label>
@@ -55,6 +63,13 @@
                   class="sign-btn"
                   name="sign-in"
                 />
+                {% if messages %}
+                <ul class="error-message">
+                  {% for message in messages %}
+                  <li class="error-message">{{ message }}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
 
                 <p class="text">
                   Forgotten your password or you login datails?
@@ -63,7 +78,8 @@
               </div>
             </form>
 
-            <form action="index.html" autocomplete="off" class="sign-up-form">
+            <form action="" method="POST" class="sign-up-form">
+              {% csrf_token %}
               <div class="logo">
                 <img src="{% static 'img/logo.png' %}" alt="LightBlog" />
                 <h4>LightBlog</h4>
@@ -74,46 +90,26 @@
                 <h6>Already have an account?</h6>
                 <a href="#" class="toggle">Sign in</a>
               </div>
-
               <div class="actual-form">
+                {% for field in form %}
                 <div class="input-wrap">
-                  <input
-                    type="text"
-                    minlength="4"
-                    class="input-field"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Name</label>
+                  {{field}}
+                  <label>{{field.label}}</label>
                 </div>
-
-                <div class="input-wrap">
-                  <input
-                    type="email"
-                    class="input-field"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Email</label>
-                </div>
-
-                <div class="input-wrap">
-                  <input
-                    type="password"
-                    minlength="4"
-                    class="input-field"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Password</label>
-                </div>
-
+                {% endfor %}
                 <input
                   type="submit"
                   value="Sign Up"
                   class="sign-btn"
                   name="sign-up"
                 />
+                {% if messages %}
+                <ul class="error-message">
+                  {% for message in messages %}
+                  <li class="error-message">{{ message }}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
 
                 <p class="text">
                   By signing up, I agree to the
