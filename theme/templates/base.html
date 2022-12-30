@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Django Tailwind</title>
+    <title>LightBlog | Homepage</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -11,5 +12,6 @@
 
   <body>
     {% include 'navbar.html' %} {% include 'hero.html' %}
+    <div>{% include 'blog_list.html' %}</div>
   </body>
 </html>
